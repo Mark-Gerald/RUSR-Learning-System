@@ -1,4 +1,5 @@
 [versions]
+agp = "8.9.1"
 appcompat = "1.7.0"
 constraintlayout = "2.1.4"
 lifecycleRuntime = "2.8.1"
