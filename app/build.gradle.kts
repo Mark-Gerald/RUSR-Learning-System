@@ -32,11 +32,28 @@ android {
 }
 
 dependencies {
+    // AndroidX Bundle
+    implementation(libs.bundles.androidx)
 
-    implementation(libs.appcompat)
+    // Navigation
+    implementation(libs.bundles.navigation)
+
+    // Material Design
     implementation(libs.material)
-    implementation(libs.activity)
-    implementation(libs.constraintlayout)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.bundles.firebase)
+
+    // Retrofit & Gson
+    implementation(libs.bundles.retrofit)
+    implementation(libs.gson)
+
+    // Glide
+    implementation(libs.glide)
+    annotationProcessor(libs.glide.compiler)
+
+    // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
