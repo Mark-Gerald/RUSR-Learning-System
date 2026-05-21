@@ -67,16 +67,6 @@ public class LessonViewModel extends ViewModel {
         return result;
     }
 
-    // Delete file from storage
-    public LiveData<Boolean> deleteFile(String filePath) {
-        return lessonRepository.deleteFile(filePath);
-    }
-
-    // Get storage reference for uploading
-    public StorageReference getStorageReference(String subjectId, String fileName) {
-        return lessonRepository.getStorageReference(subjectId, fileName);
-    }
-
     // Refresh lessons
     public void refreshLessons(String subjectId) {
         this.lessons = lessonRepository.getLessonsBySubject(subjectId);
