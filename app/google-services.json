@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "882281637583",
+    "project_id": "rus-r-learning-system",
+    "storage_bucket": "rus-r-learning-system.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882281637583:android:3bbd45e50c0f986a5a39ba",
+        "android_client_info": {
+          "package_name": "com.example.rus_r"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdN18P3XbbgZSlEzofM4fBQHp01PNKhcQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
