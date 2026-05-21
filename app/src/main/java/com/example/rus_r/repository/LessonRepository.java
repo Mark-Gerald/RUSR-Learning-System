@@ -5,8 +5,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.rus_r.model.Lesson;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +12,10 @@ import java.util.UUID;
 
 public class LessonRepository {
     private final FirebaseFirestore db;
-    private final FirebaseStorage storage;
     private final String LESSONS_COLLECTION = "lessons";
 
     public LessonRepository() {
         this.db = FirebaseFirestore.getInstance();
-        this.storage = FirebaseStorage.getInstance();
     }
 
     // Create a new lesson
@@ -91,9 +87,6 @@ public class LessonRepository {
                 .update(
                         "title", lesson.getTitle(),
                         "description", lesson.getDescription(),
-                        "fileUrl", lesson.getFileUrl(),
-                        "fileType", lesson.getFileType(),
-                        "fileSize", lesson.getFileSize(),
                         "updatedAt", lesson.getUpdatedAt()
                 )
                 .addOnSuccessListener(aVoid -> result.setValue(true))
@@ -106,7 +99,6 @@ public class LessonRepository {
     public LiveData<Boolean> deleteLesson(String lessonId) {
         MutableLiveData<Boolean> result = new MutableLiveData<>();
 
-        // First delete from Firestore
         db.collection(LESSONS_COLLECTION)
                 .document(lessonId)
                 .delete()
@@ -114,25 +106,5 @@ public class LessonRepository {
                 .addOnFailureListener(e -> result.setValue(false));
 
         return result;
-    }
-
-    // Delete file from Firebase Storage
-    public LiveData<Boolean> deleteFile(String filePath) {
-        MutableLiveData<Boolean> result = new MutableLiveData<>();
-        StorageReference fileRef = storage.getReference().child(filePath);
-
-        fileRef.delete()
-                .addOnSuccessListener(aVoid -> result.setValue(true))
-                .addOnFailureListener(e -> result.setValue(false));
-
-        return result;
-    }
-
-    // Get storage reference for uploading files
-    public StorageReference getStorageReference(String subjectId, String fileName) {
-        return storage.getReference()
-                .child("lessons")
-                .child(subjectId)
-                .child(fileName);
     }
 }
