@@ -58,4 +58,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Google Play Services (Auth only - simpler)
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+
+    // For file operations
+    implementation("androidx.documentfile:documentfile:1.0.1")
 }

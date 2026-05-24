@@ -17,6 +17,9 @@ glide = "4.16.0"
 junit = "4.13.2"
 extJunit = "1.1.5"
 espressoCore = "3.5.1"
+playServicesAuth = "21.2.0"
+googleAuthLibrary = "1.15.0"
+googleApiClientAndroid = "1.33.2"
 
 [libraries]
 # AndroidX

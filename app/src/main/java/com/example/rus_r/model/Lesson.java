@@ -5,24 +5,23 @@ public class Lesson {
     private String subjectId;
     private String title;
     private String description;
-    private String fileUrl;
-    private String fileType; // "pdf", "ppt", "image", "notes", "document"
+    private String content; // Text content
+    private String googleDriveFileId; // NEW: Google Drive file ID
+    private String googleDriveFileName; // NEW: File name from Drive
+    private String googleDriveDownloadUrl; // NEW: Download URL
     private long createdAt;
     private long updatedAt;
-    private long fileSize;
 
     // Constructor
     public Lesson() {
     }
 
-    public Lesson(String id, String subjectId, String title, String description,
-                  String fileUrl, String fileType) {
+    public Lesson(String id, String subjectId, String title, String description, String content) {
         this.id = id;
         this.subjectId = subjectId;
         this.title = title;
         this.description = description;
-        this.fileUrl = fileUrl;
-        this.fileType = fileType;
+        this.content = content;
         this.createdAt = System.currentTimeMillis();
         this.updatedAt = System.currentTimeMillis();
     }
@@ -60,20 +59,36 @@ public class Lesson {
         this.description = description;
     }
 
-    public String getFileUrl() {
-        return fileUrl;
+    public String getContent() {
+        return content;
     }
 
-    public void setFileUrl(String fileUrl) {
-        this.fileUrl = fileUrl;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public String getFileType() {
-        return fileType;
+    public String getGoogleDriveFileId() {
+        return googleDriveFileId;
     }
 
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
+    public void setGoogleDriveFileId(String googleDriveFileId) {
+        this.googleDriveFileId = googleDriveFileId;
+    }
+
+    public String getGoogleDriveFileName() {
+        return googleDriveFileName;
+    }
+
+    public void setGoogleDriveFileName(String googleDriveFileName) {
+        this.googleDriveFileName = googleDriveFileName;
+    }
+
+    public String getGoogleDriveDownloadUrl() {
+        return googleDriveDownloadUrl;
+    }
+
+    public void setGoogleDriveDownloadUrl(String googleDriveDownloadUrl) {
+        this.googleDriveDownloadUrl = googleDriveDownloadUrl;
     }
 
     public long getCreatedAt() {
@@ -90,13 +105,5 @@ public class Lesson {
 
     public void setUpdatedAt(long updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public long getFileSize() {
-        return fileSize;
-    }
-
-    public void setFileSize(long fileSize) {
-        this.fileSize = fileSize;
     }
 }
