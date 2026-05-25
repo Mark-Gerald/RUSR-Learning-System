@@ -1,6 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="120dp"
+    android:layout_margin="@dimen/spacing_8"
+    app:cardCornerRadius="@dimen/corner_radius_8"
+    app:cardElevation="2dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Front Side -->
+        <LinearLayout
+            android:id="@+id/card_front"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/spacing_16"
+            android:background="@color/primary">
+
+            <TextView
+                android:id="@+id/flashcard_front"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Question"
+                android:textSize="@dimen/text_size_18"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:maxLines="3" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tap to reveal"
+                android:textSize="@dimen/text_size_12"
+                android:textColor="@color/primary_light"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/spacing_8" />
+
+        </LinearLayout>
+
+        <!-- Back Side -->
+        <LinearLayout
+            android:id="@+id/card_back"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="@dimen/spacing_16"
+            android:background="@color/accent"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/flashcard_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Answer"
+                android:textSize="@dimen/text_size_16"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:maxLines="3" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</com.google.android.material.card.MaterialCardView>
