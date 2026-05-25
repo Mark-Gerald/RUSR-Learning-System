@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/spacing_8"
+    app:cardCornerRadius="@dimen/corner_radius_8"
+    app:cardElevation="2dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_12">
+
+        <!-- Lesson Title -->
+        <TextView
+            android:id="@+id/lesson_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lesson Title"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/text_primary"
+            android:textStyle="bold" />
+
+        <!-- Lesson Description -->
+        <TextView
+            android:id="@+id/lesson_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lesson description"
+            android:textSize="@dimen/text_size_14"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="@dimen/spacing_4"
+            android:ellipsize="end"
+            android:maxLines="2" />
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/spacing_12"
+            android:gravity="end">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_view_lesson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View"
+                android:layout_margin="@dimen/spacing_4"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_delete_lesson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:layout_margin="@dimen/spacing_4"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:textColor="@color/error" />
+
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
