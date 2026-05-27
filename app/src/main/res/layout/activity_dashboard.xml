@@ -1,59 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white">
 
-    <!-- Header -->
+    <!-- Main Content (with ScrollView for smaller screens) -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/spacing_16"
-        android:background="@color/primary">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Header Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dashboard_title"
-            android:textSize="@dimen/text_size_28"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_16"
+            android:background="@color/primary">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select a subject to get started"
-            android:textSize="@dimen/text_size_14"
-            android:textColor="@color/primary_light"
-            android:layout_marginTop="@dimen/spacing_4" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dashboard_title"
+                android:textSize="@dimen/text_size_28"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select a subject to get started"
+                android:textSize="@dimen/text_size_14"
+                android:textColor="@color/primary_light"
+                android:layout_marginTop="@dimen/spacing_4" />
+
+        </LinearLayout>
+
+        <!-- Subjects RecyclerView with proper weight -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_subjects"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/spacing_12"
+                android:clipToPadding="false"
+                android:scrollbars="vertical" />
+
+            <!-- Empty State -->
+            <TextView
+                android:id="@+id/empty_state"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_subjects"
+                android:textSize="@dimen/text_size_16"
+                android:textColor="@color/gray_medium"
+                android:visibility="gone" />
+
+        </FrameLayout>
 
     </LinearLayout>
 
-    <!-- Subjects RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_subjects"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="@dimen/spacing_12"
-        android:clipToPadding="false"
-        tools:listitem="@layout/item_subject_card"
-        xmlns:tools="http://schemas.android.com/tools" />
-
-    <!-- Empty State -->
-    <TextView
-        android:id="@+id/empty_state"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/no_subjects"
-        android:textSize="@dimen/text_size_16"
-        android:textColor="@color/gray_medium"
-        android:visibility="gone" />
-
-    <!-- Floating Action Button -->
+    <!-- Floating Action Button (anchored to CoordinatorLayout) -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_subject"
         android:layout_width="wrap_content"
@@ -61,6 +74,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/spacing_16"
         android:src="@drawable/ic_add"
-        android:contentDescription="@string/add_subject" />
+        android:contentDescription="@string/add_subject"
+        app:elevation="6dp" />
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

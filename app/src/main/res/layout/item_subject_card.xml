@@ -2,16 +2,17 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/card_height"
+    android:layout_height="wrap_content"
     android:layout_margin="@dimen/spacing_8"
     app:cardCornerRadius="@dimen/corner_radius_12"
     app:cardElevation="@dimen/card_elevation">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/spacing_16">
+        android:padding="@dimen/spacing_16"
+        android:minHeight="150dp">
 
         <!-- Color Bar -->
         <View
@@ -29,7 +30,9 @@
             android:text="Subject Name"
             android:textSize="@dimen/text_size_20"
             android:textColor="@color/text_primary"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="2" />
 
         <!-- Description -->
         <TextView
@@ -42,16 +45,17 @@
             android:textColor="@color/text_secondary"
             android:layout_marginTop="@dimen/spacing_8"
             android:ellipsize="end"
-            android:maxLines="3" />
+            android:maxLines="2" />
 
         <!-- Stats Row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/spacing_8">
+            android:layout_marginTop="@dimen/spacing_12"
+            android:gravity="center_vertical">
 
-            <!-- Lesson Count -->
+            <!-- Lessons Count -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -81,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -95,6 +100,7 @@
                     android:text="Quizzes"
                     android:textSize="@dimen/text_size_12"
                     android:textColor="@color/text_secondary" />
+
             </LinearLayout>
 
             <!-- Flashcards Count -->
@@ -118,7 +124,11 @@
                     android:text="Cards"
                     android:textSize="@dimen/text_size_12"
                     android:textColor="@color/text_secondary" />
+
             </LinearLayout>
+
         </LinearLayout>
+
     </LinearLayout>
+
 </com.google.android.material.card.MaterialCardView>
