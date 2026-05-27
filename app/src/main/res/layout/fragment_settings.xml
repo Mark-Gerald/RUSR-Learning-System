@@ -3,69 +3,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/spacing_16"
     android:background="@color/white">
 
-    <!-- Settings Title -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Settings"
-        android:textSize="@dimen/text_size_24"
-        android:textColor="@color/text_primary"
-        android:textStyle="bold"
-        android:layout_marginBottom="@dimen/spacing_16" />
-
-    <!-- App Version -->
+    <!-- Header with Back Button -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/spacing_12"
-        android:background="@drawable/settings_item_background">
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_16"
+        android:gravity="center_vertical">
 
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back" />
+
+        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="App Version"
-            android:textSize="@dimen/text_size_16"
+            android:text="Settings"
+            android:textSize="@dimen/text_size_24"
             android:textColor="@color/text_primary"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1.0.0"
-            android:textSize="@dimen/text_size_14"
-            android:textColor="@color/text_secondary"
-            android:layout_marginTop="@dimen/spacing_4" />
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/spacing_12" />
 
     </LinearLayout>
 
-    <!-- About -->
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_light" />
+
+    <!-- Settings Content -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/spacing_12"
-        android:background="@drawable/settings_item_background"
-        android:layout_marginTop="@dimen/spacing_12">
+        android:padding="@dimen/spacing_16">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- App Version -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="About"
-            android:textSize="@dimen/text_size_16"
-            android:textColor="@color/text_primary"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_12"
+            android:background="@drawable/settings_item_background">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="App Version"
+                android:textSize="@dimen/text_size_16"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.0.0"
+                android:textSize="@dimen/text_size_14"
+                android:textColor="@color/text_secondary"
+                android:layout_marginTop="@dimen/spacing_4" />
+
+        </LinearLayout>
+
+        <!-- About -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RUS-R Learning System v1.0"
-            android:textSize="@dimen/text_size_14"
-            android:textColor="@color/text_secondary"
-            android:layout_marginTop="@dimen/spacing_4" />
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_12"
+            android:background="@drawable/settings_item_background"
+            android:layout_marginTop="@dimen/spacing_12">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About"
+                android:textSize="@dimen/text_size_16"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RUS-R Learning System v1.0\nA learning management system for students"
+                android:textSize="@dimen/text_size_14"
+                android:textColor="@color/text_secondary"
+                android:layout_marginTop="@dimen/spacing_4" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
