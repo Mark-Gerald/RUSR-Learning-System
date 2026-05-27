@@ -44,11 +44,21 @@ public class DashboardFragment extends Fragment {
         recyclerSubjects = view.findViewById(R.id.recycler_subjects);
         recyclerSubjects.setLayoutManager(new GridLayoutManager(getContext(), 1));
 
-        // Setup Adapter
-        subjectAdapter = new SubjectAdapter(subject -> {
-            // TODO: Open subject detail
-            Toast.makeText(getContext(), "Selected: " + subject.getName(), Toast.LENGTH_SHORT).show();
-        });
+        // Setup Adapter with both click and long-click listeners
+        subjectAdapter = new SubjectAdapter(
+                subject -> navigateToSubject(subject),
+                new SubjectAdapter.OnSubjectLongClickListener() {
+                    @Override
+                    public void onSubjectEdit(Subject subject) {
+                        showEditSubjectDialog(subject);
+                    }
+
+                    @Override
+                    public void onSubjectDelete(Subject subject) {
+                        deleteSubject(subject);
+                    }
+                }
+        );
         recyclerSubjects.setAdapter(subjectAdapter);
 
         // Setup FAB
@@ -72,18 +82,24 @@ public class DashboardFragment extends Fragment {
     }
 
     /**
+     * Navigate to subject detail page
+     */
+    private void navigateToSubject(Subject subject) {
+        // TODO: Implement navigation to SubjectDetailActivity
+        Toast.makeText(getContext(), "Opening " + subject.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    /**
      * Show dialog to add new subject
      */
     private void showAddSubjectDialog() {
         try {
-            // Create dialog view
             View dialogView = LayoutInflater.from(getContext())
                     .inflate(R.layout.dialog_create_subject, null);
 
             TextInputEditText inputName = dialogView.findViewById(R.id.input_subject_name);
             TextInputEditText inputDescription = dialogView.findViewById(R.id.input_subject_description);
 
-            // Create and show dialog
             MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getContext());
             builder.setTitle("Create New Subject")
                     .setView(dialogView)
@@ -96,13 +112,11 @@ public class DashboardFragment extends Fragment {
                             return;
                         }
 
-                        // Create new subject
                         Subject subject = new Subject();
                         subject.setName(name);
                         subject.setDescription(description);
-                        subject.setColor("#4ECDC4"); // Default color
+                        subject.setColor("#4ECDC4");
 
-                        // Save to database
                         viewModel.createSubject(subject).observe(getViewLifecycleOwner(), success -> {
                             if (success) {
                                 Toast.makeText(getContext(), "Subject created successfully!", Toast.LENGTH_SHORT).show();
@@ -119,5 +133,66 @@ public class DashboardFragment extends Fragment {
         } catch (Exception e) {
             Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * Show dialog to edit subject
+     */
+    private void showEditSubjectDialog(Subject subject) {
+        try {
+            View dialogView = LayoutInflater.from(getContext())
+                    .inflate(R.layout.dialog_create_subject, null);
+
+            TextInputEditText inputName = dialogView.findViewById(R.id.input_subject_name);
+            TextInputEditText inputDescription = dialogView.findViewById(R.id.input_subject_description);
+
+            // Pre-fill with current values
+            inputName.setText(subject.getName());
+            inputDescription.setText(subject.getDescription());
+
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getContext());
+            builder.setTitle("Edit Subject")
+                    .setView(dialogView)
+                    .setPositiveButton("Save", (dialog, which) -> {
+                        String name = inputName.getText().toString().trim();
+                        String description = inputDescription.getText().toString().trim();
+
+                        if (name.isEmpty()) {
+                            Toast.makeText(getContext(), "Please enter subject name", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        subject.setName(name);
+                        subject.setDescription(description);
+
+                        viewModel.updateSubject(subject).observe(getViewLifecycleOwner(), success -> {
+                            if (success) {
+                                Toast.makeText(getContext(), "Subject updated successfully!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getContext(), "Failed to update subject", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        dialog.dismiss();
+                    })
+                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                    .show();
+
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Delete subject after confirmation
+     */
+    private void deleteSubject(Subject subject) {
+        viewModel.deleteSubject(subject.getId()).observe(getViewLifecycleOwner(), success -> {
+            if (success) {
+                Toast.makeText(getContext(), "Subject deleted successfully!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Failed to delete subject", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
